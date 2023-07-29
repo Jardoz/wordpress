@@ -33,8 +33,8 @@
         href="<?php echo bloginfo('template_url'); ?>/assets/img/favicons/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="180x180"
         href="<?php echo bloginfo('template_url'); ?>/assets/img/favicons/apple-touch-icon-180x180.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
     <?php
     wp_head();
     ?>
@@ -84,7 +84,18 @@
                 </div>
             </div>
             <nav class="row" data-slide="1">
-                <ul class="header__nav">
+                <?php 
+                    wp_nav_menu( [
+                        'menu' => 'Main',
+                        'container' => false,
+                        'menu_class' => 'header__nav',
+                        'echo' => true,
+                        'fallback_cb' => 'wp_page_menu',
+                        'items_wrap'  => '<ul class="header__nav">%3$s</ul>',
+                        'depth' => 1
+                    ] );
+                ?>
+                <!-- <ul class="header__nav">
                     <li>
                         <a class="header__nav-item" href="#about">About</a>
                     </li>
@@ -100,7 +111,7 @@
                     <li>
                         <a class="header__nav-item" href="#contacts">Contacts and feedbacks</a>
                     </li>
-                </ul>
+                </ul> -->
             </nav>
         </div>
         <div class="header__hamburger">
